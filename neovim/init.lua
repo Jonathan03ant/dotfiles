@@ -19,13 +19,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Installing a treesitter and neo-tree to better mage files in a file manager structures
 -- dependencies will also be installed
 require('lazy').setup({
-    {
-      "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate",
-    },
-
     require 'plugins.themes.onedark',
     require 'plugins.neotree',
-    require 'plugins.bufferline' 
+    require 'plugins.bufferline', 
+    require 'plugins.lualine',   
+    require 'plugins.treesitter',
+    require 'plugins.telescope',    
 })
 
