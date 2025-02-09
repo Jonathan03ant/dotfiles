@@ -18,6 +18,12 @@ vim.keymap.set('n', '<Esc>', ':noh<CR>', opts)
 -- delete single character without copying into register
 vim.keymap.set('n', 'x', '"_x', opts)
 
+-- save file
+vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
+
+-- quit file
+vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
+
 -- Resize with arrows
 vim.keymap.set('n', '<S-Up>', ':resize -2<CR>', opts)
 vim.keymap.set('n', '<S-Down>', ':resize +2<CR>', opts)
