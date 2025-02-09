@@ -26,5 +26,6 @@ require('lazy').setup({
 
     require 'plugins.themes.onedark',
     require 'plugins.neotree',
+    require 'plugins.bufferline' 
 })
 
