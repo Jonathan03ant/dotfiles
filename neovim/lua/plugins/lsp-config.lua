@@ -1,6 +1,7 @@
 return {
     {
         -- this will be the mason server
+        -- run :Mason to see its config servers
         "williamboman/mason.nvim",
         config = function()
             require("mason").setup()
@@ -8,6 +9,7 @@ return {
     },
 
     {
+        -- ESUNRE INSTALLED THIS LSP server languages
         -- this makes sure individual language servers are installed 
         -- if we want to add ls for a new language we can add it here 
         "williamboman/mason-lspconfig.nvim",
@@ -16,13 +18,10 @@ return {
                 ensure_installed = {
                     "lua_ls", --server for lua language
                     "bashls",
-                    "pkgbuild_language_server",
                     "ast_grep",
                     "clangd",
                     "harper_ls",
                     "cmake",
-                    "neomake",
-                    "jinja_lsp",
                     "dockerls",
                     "jsonls",
                     "pylsp",
@@ -33,7 +32,12 @@ return {
      },
     {
         -- Hooking nvim with lsp servers
-
+        "neovim/nvim-lspconfig",
+        config = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.lua_ls.setup({})
+            
+        end
     },
 }
 
