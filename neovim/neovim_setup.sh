@@ -1,4 +1,11 @@
 #!/bin/bash
+echo "preparing system"
+sudo apt update
+sleep 1
+
+echo "Installing Lua 5.1 and Luarocks..."
+sudo install -y lua5.1 luarocks
+sleep 1
 
 echo "🔧 Setting up Neovim configuration..."
 sleep 1
