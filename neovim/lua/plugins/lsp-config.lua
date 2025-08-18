@@ -1,17 +1,16 @@
 return {
+  -- LSP + dependencies
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "nvimdev/lspsaga.nvim",
       "ray-x/lsp_signature.nvim",
       "folke/neodev.nvim",
     },
     config = function()
-      -- Mason setup
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -28,7 +27,6 @@ return {
         },
       })
 
-      -- LSP and UI setup
       local lspconfig = require("lspconfig")
       local cmp_lsp = require("cmp_nvim_lsp")
       local capabilities = cmp_lsp.default_capabilities()
@@ -54,6 +52,31 @@ return {
           end,
         })
       end
+    end,
+  },
+
+  -- nvim-cmp (top-level plugin spec)
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = {
+          { name = "nvim_lsp" },
+        },
+        completion = {
+          autocomplete = false,
+        },
+      })
+
+      -- <leader>. to trigger suggestions manually
+      vim.keymap.set("i", "<leader>.", function()
+        cmp.complete()
+      end, { silent = true })
     end,
   },
 }
